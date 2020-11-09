@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "games/lib/gamestests.jar",
+        "games/lib/playerstests.jar",
+        "games/lib/playstests.jar"
+    ]
+}
