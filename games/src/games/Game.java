@@ -15,8 +15,6 @@ public interface Game {
 
     public boolean wins();
 
-    public boolean tie();
-
     public boolean isOver();
 
     public Player getWinner();

@@ -132,7 +132,6 @@ public class TicTacToe extends AbstractGame implements Game {
         return false;
     }
 
-    @Override
     public boolean tie() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -148,6 +147,10 @@ public class TicTacToe extends AbstractGame implements Game {
     public Player getWinner() {
         if (wins()) {
             return this.current_player;
+        }
+        if (tie() && !wins()) {
+            System.out.println("Tie!");
+            System.exit(0);
         }
         return null;
     }

@@ -21,13 +21,8 @@ public class Orchestrator {
             System.out.println("This is " + game.getCurrentPlayer().getName() + "'s turn");
             game.getCurrentPlayer().chooseMove(game);
 
-            if (game.tie() && !game.wins()) {
-                System.out.println("Tie!");
-                System.exit(0);
-            } else {
-                if (game.getWinner() != null) {
-                    System.out.println("Winner is " + game.getWinner().getName());
-                }
+            if (game.getWinner() != null) {
+                System.out.println("Winner is " + game.getWinner().getName());
             }
         }
     }

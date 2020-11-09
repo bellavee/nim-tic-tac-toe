@@ -72,14 +72,6 @@ public class Nim extends AbstractGame implements Game {
     }
 
     @Override
-    public boolean tie() {
-        if (!wins()) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public Player getWinner() {
         if (wins()) {
             return this.current_player;
