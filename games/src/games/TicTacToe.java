@@ -163,9 +163,16 @@ public class TicTacToe extends AbstractGame implements Game {
 
     @Override
     public boolean isOver() {
+        if (tie()) {
+            System.out.println("Tie");
+            return true;
+        }
+
         if (getWinner() == null) {
             return false;
-        } else {
+        }
+
+        else {
             return true;
         }
     }

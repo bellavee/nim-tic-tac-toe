@@ -28,7 +28,7 @@ public class Test {
         ok = ok && ticTacToeTester.testValidMoves();
         ok = ok && ticTacToeTester.testWins();
         ok = ok && ticTacToeTester.testGetWinner();
-        // ok = ok && ticTacToeTester.testIsOver();
+        ok = ok && ticTacToeTester.testIsOver();
 
         // // Si la version du morpion avec indices (qui est optionnelle) a été réalisée
         // TicTacToeWithHintsTests ticTacToeWithHintsTester = new
