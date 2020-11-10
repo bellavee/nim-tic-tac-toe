@@ -8,9 +8,11 @@ public class Test {
     public static void main(String[] args) {
         boolean ok = true;
 
+        // dech test duoc coc vai
+        // may con cho vo dung deo biet lam gi het
         AbstractGameTests abstractGameTester = new AbstractGameTests();
         ok = ok && abstractGameTester.testGetCurrentPlayer();
-        // ok = ok && abstractGameTester.testExecute();
+        ok = ok && abstractGameTester.testExecute();
 
         NimTests nimTester = new NimTests();
         ok = ok && nimTester.testGetInitialNbMatches();
