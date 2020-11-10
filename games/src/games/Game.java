@@ -13,8 +13,6 @@ public interface Game {
 
     public boolean isValid(int index);
 
-    public boolean wins();
-
     public boolean isOver();
 
     public Player getWinner();

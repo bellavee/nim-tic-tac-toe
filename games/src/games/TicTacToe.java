@@ -108,28 +108,46 @@ public class TicTacToe extends AbstractGame implements Game {
         return move_valid;
     }
 
-    public boolean checkWin(Player p1, Player p2, Player p3) {
-        return ((p1 != null) && (p1 == p2) && (p2 == p3) && (p3 == p1));
+    public boolean wins(Player P, int row, int col, int drow, int dcol) {
+        if (this.tab[row][col] == null) {
+            return false;
+        }
+        if (this.tab[row][col] != this.tab[row + drow][col + dcol]) {
+            return false;
+        }
+        if (this.tab[row][col] != this.tab[row + 2 * drow][col + 2 * dcol]) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean wins() {
-        for (int i = 0; i < 3; i++) {
-            if (checkWin(this.tab[i][0], this.tab[i][1], this.tab[i][2])) {
-                return true;
-            }
+    public Player getWinner() {
+        Player winner = this.current_player;
 
-            if (checkWin(this.tab[0][i], this.tab[1][i], this.tab[2][i])) {
-                return true;
-            }
-        }
+        // Horizontals
+        if (wins(winner, 0, 0, 0, 1))
+            return winner;
+        if (wins(winner, 1, 0, 0, 1))
+            return winner;
+        if (wins(winner, 2, 0, 0, 1))
+            return winner;
 
-        if (checkWin(this.tab[0][0], this.tab[1][1], this.tab[2][2])
-                || (checkWin(this.tab[0][2], this.tab[1][1], this.tab[2][0]))) {
-            return true;
-        }
+        // Verticals
+        if (wins(winner, 0, 0, 1, 0))
+            return winner;
+        if (wins(winner, 0, 1, 1, 0))
+            return winner;
+        if (wins(winner, 0, 2, 1, 0))
+            return winner;
 
-        return false;
+        // Diagonals
+        if (wins(winner, 0, 0, 1, 1))
+            return winner;
+        if (wins(winner, 2, 0, -1, 1))
+            return winner;
+
+        return null;
     }
 
     public boolean tie() {
@@ -141,18 +159,6 @@ public class TicTacToe extends AbstractGame implements Game {
             }
         }
         return true;
-    }
-
-    @Override
-    public Player getWinner() {
-        if (wins()) {
-            return this.current_player;
-        }
-        if (tie() && !wins()) {
-            System.out.println("Tie!");
-            System.exit(0);
-        }
-        return null;
     }
 
     @Override

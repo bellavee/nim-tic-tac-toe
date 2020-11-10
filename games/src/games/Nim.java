@@ -64,16 +64,8 @@ public class Nim extends AbstractGame implements Game {
     }
 
     @Override
-    public boolean wins() {
-        if (this.courant_allu == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
     public Player getWinner() {
-        if (wins()) {
+        if (this.courant_allu == 0) {
             return this.current_player;
         }
         return null;
