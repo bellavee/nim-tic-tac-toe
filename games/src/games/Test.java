@@ -17,8 +17,8 @@ public class Test {
         ok = ok && nimTester.testGetCurrentNbMatches();
         ok = ok && nimTester.testGetCurrentPlayer();
         ok = ok && nimTester.testExecute();
-        // ok = ok && nimTester.testIsValid();
-        // ok = ok && nimTester.testValidMoves();
+        ok = ok && nimTester.testIsValid();
+        ok = ok && nimTester.testValidMoves();
         ok = ok && nimTester.testIsOver();
         ok = ok && nimTester.testGetWinner();
 
