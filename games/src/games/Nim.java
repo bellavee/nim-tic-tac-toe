@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import players.Player;
 
-public class Nim extends AbstractGame implements Game {
+public class Nim extends AbstractGame {
     private int taille;
     private int max_allu;
     private int courant_allu;

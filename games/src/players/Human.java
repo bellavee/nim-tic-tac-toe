@@ -2,7 +2,7 @@ package players;
 
 import java.util.Scanner;
 
-import games.Game;
+import games.AbstractGame;
 
 public class Human implements Player {
     private String player;
@@ -16,7 +16,7 @@ public class Human implements Player {
     }
 
     @Override
-    public int chooseMove(Game game) {
+    public int chooseMove(AbstractGame game) {
         System.out.println("Make a move's number (-1 to exit) ");
         System.out.println("Move valid " + game.validMoves());
         Scanner input = new Scanner(System.in);

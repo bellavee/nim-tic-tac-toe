@@ -1,9 +1,9 @@
 package players;
 
-import games.Game;
+import games.AbstractGame;
 
 public interface Player {
-    public int chooseMove(Game game);
+    public int chooseMove(AbstractGame game);
 
     public String getName();
 }

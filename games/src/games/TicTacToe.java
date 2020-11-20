@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import players.Player;
 
-public class TicTacToe extends AbstractGame implements Game {
+public class TicTacToe extends AbstractGame {
     private Player tab[][] = new Player[3][3];
     private int tab_index[][] = new int[3][3];
 

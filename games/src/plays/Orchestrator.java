@@ -2,20 +2,20 @@ package plays;
 
 import java.util.Scanner;
 
-import games.Game;
+import games.AbstractGame;
 import games.Nim;
 import games.TicTacToe;
 import players.Human;
 import players.Player;
 
 public class Orchestrator {
-    Game game;
+    AbstractGame game;
 
-    public Orchestrator(Game game) {
+    public Orchestrator(AbstractGame game) {
         this.game = game;
     }
 
-    public void play(Game game) {
+    public void play(AbstractGame game) {
         while (!game.isOver()) {
             System.out.println(game.situationToString());
             System.out.println("This is " + game.getCurrentPlayer().getName() + "'s turn");

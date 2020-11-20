@@ -1,5 +1,7 @@
 package games;
 
+import java.util.ArrayList;
+
 import players.Player;
 
 public abstract class AbstractGame {
@@ -22,4 +24,14 @@ public abstract class AbstractGame {
     public void execute(int index) {
         doExecute(index);
     }
+
+    public abstract ArrayList validMoves();
+
+    public abstract boolean isValid(int index);
+
+    public abstract boolean isOver();
+
+    public abstract Player getWinner();
+
+    public abstract String situationToString();
 }
