@@ -1,18 +1,25 @@
-// package players;
+package players;
 
-// import java.util.Random;
+import java.util.Random;
 
-// import games.Game;
+import games.Game;
 
-// public class RandomPlayer implements Player {
+public class RandomPlayer implements Player {
+    Random rand;
 
-//     @Override
-//     public int chooseMove(Game game)
+    public RandomPlayer(Random rand) {
+        this.rand = rand;
+    }
 
-//     @Override
-//     public String getName() {
-//         // TODO Auto-generated method stub
-//         return null;
-//     }
-    
-// }
+    @Override
+    public int chooseMove(Game game) {
+        int choice = rand.nextInt(game.validMoves().size());
+        return game.validMoves().get(choice);
+    }
+
+    @Override
+    public String toString() {
+        return "Random player no. " + this.hashCode();
+    }
+
+}

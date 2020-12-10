@@ -1,13 +1,22 @@
-package games;
+package main;
 
 import gamestests.AbstractGameTests;
 import gamestests.NimTests;
 import gamestests.TicTacToeTests;
+import gamestests.TicTacToeWithHintsTests;
+import playerstests.HumanTests;
+import playerstests.NegamaxPlayerTests;
+import playerstests.NegamaxPlayerWithCacheTests;
+import playerstests.RandomPlayerTests;
+import playstests.OrchestratorTests;
 
 public class Test {
+
     public static void main(String[] args) {
+
         boolean ok = true;
 
+        // Package "games"
         AbstractGameTests abstractGameTester = new AbstractGameTests();
         ok = ok && abstractGameTester.testGetCurrentPlayer();
         ok = ok && abstractGameTester.testExecute();
@@ -21,6 +30,7 @@ public class Test {
         ok = ok && nimTester.testValidMoves();
         ok = ok && nimTester.testIsOver();
         ok = ok && nimTester.testGetWinner();
+        ok = ok && nimTester.testCopy();
 
         TicTacToeTests ticTacToeTester = new TicTacToeTests();
         ok = ok && ticTacToeTester.testGetCurrentPlayer();
@@ -29,8 +39,8 @@ public class Test {
         ok = ok && ticTacToeTester.testWins();
         ok = ok && ticTacToeTester.testGetWinner();
         ok = ok && ticTacToeTester.testIsOver();
+        ok = ok && ticTacToeTester.testCopy();
 
-        // // Si la version du morpion avec indices (qui est optionnelle) a été réalisée
         // TicTacToeWithHintsTests ticTacToeWithHintsTester = new
         // TicTacToeWithHintsTests();
         // ok = ok && ticTacToeWithHintsTester.testGetCurrentPlayer();
@@ -40,7 +50,35 @@ public class Test {
         // ok = ok && ticTacToeWithHintsTester.testGetWinner();
         // ok = ok && ticTacToeWithHintsTester.testIsOver();
         // ok = ok && ticTacToeWithHintsTester.testHints();
+        // ok = ok & ticTacToeWithHintsTester.testCopy();
+
+        // Package "players"
+        HumanTests humanTester = new HumanTests();
+        // ok = ok && humanTester.testChooseMove();
+        // ok = ok && humanTester.silentTestChooseMove();
+
+        RandomPlayerTests randomTester = new RandomPlayerTests();
+        ok = ok && randomTester.testChooseMove();
+
+        NegamaxPlayerTests negamaxTester = new NegamaxPlayerTests();
+        ok = ok && negamaxTester.testEvaluate();
+        ok = ok && negamaxTester.testChooseMove();
+
+        // NegamaxPlayerWithCacheTests negamaxWithCacheTester = new
+        // NegamaxPlayerWithCacheTests();
+        // ok = ok && negamaxWithCacheTester.testNimEquals();
+        // ok = ok && negamaxWithCacheTester.testNimHashCode();
+        // ok = ok && negamaxWithCacheTester.testTicTacToeEquals();
+        // ok = ok && negamaxWithCacheTester.testTicTacToeHashCode();
+        // ok = ok && negamaxWithCacheTester.testEvaluate();
+        // ok = ok && negamaxWithCacheTester.testChooseMove();
+
+        // Package "orchestrator"
+        OrchestratorTests tester = new OrchestratorTests();
+        ok = ok && tester.silentTestPlay();
 
         System.out.println(ok ? "All tests passed" : "At least one test failed");
+
     }
+
 }

@@ -1,69 +1,127 @@
 package plays;
 
+import java.util.Random;
 import java.util.Scanner;
 
-import games.AbstractGame;
+import games.Game;
 import games.Nim;
 import games.TicTacToe;
 import players.Human;
+import players.NegamaxPlayer;
+import players.RandomPlayer;
 import players.Player;
 
 public class Orchestrator {
-    AbstractGame game;
+    Game game;
 
-    public Orchestrator(AbstractGame game) {
+    public Orchestrator(Game game) {
         this.game = game;
     }
 
-    public void play(AbstractGame game) {
-        while (!game.isOver()) {
-            System.out.println(game.situationToString());
-            System.out.println("This is " + game.getCurrentPlayer().getName() + "'s turn");
-            game.getCurrentPlayer().chooseMove(game);
+    public void play() {
+        System.out.println("Move valid " + this.game.validMoves());
+        while (!this.game.isOver()) {
+            System.out.println(this.game.situationToString());
+            int move = this.game.getCurrentPlayer().chooseMove(game);
+            this.game.execute(move);
+            System.out.println(this.game.moveToString(move));
 
-            if (game.getWinner() != null) {
-                System.out.println("Winner is " + game.getWinner().getName());
+            if (this.game.getWinner() != null) {
+                System.out.println("Winner is " + this.game.getWinner().toString());
             }
         }
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to 333 game");
+        System.out.println("Choose a game you wanna play\n1-Nim\t2-TicTacToe");
+        Scanner choice = new Scanner(System.in);
+        int game_choose = choice.nextInt();
 
-        System.out.print("Enter Player 1's name: ");
-        Scanner name = new Scanner(System.in);
-        String player_name_1 = name.nextLine();
+        System.out.println("Do you want to play\n1-with player\t2-with random\t3-with negamax");
+        int game_mode = choice.nextInt();
 
-        System.out.print("Enter Player 2's name: ");
-        String player_name_2 = name.nextLine();
+        if (game_mode == 1) {
+            System.out.print("Enter Player 1's name: ");
+            Scanner name = new Scanner(System.in);
+            String player_name_1 = name.nextLine();
 
-        System.out.println("Choose a game you wanna play (1-Nim, 2-TicTacToe) ");
-        Scanner move = new Scanner(System.in);
-        int choice = move.nextInt();
+            System.out.print("Enter Player 2's name: ");
+            String player_name_2 = name.nextLine();
 
-        Player player1 = new Human(player_name_1, move, choice);
-        Player player2 = new Human(player_name_2, move, choice);
+            if (game_choose == 1) {
+                Scanner scanner = new Scanner(System.in);
+                Player player1 = new Human(player_name_1, scanner);
+                Player player2 = new Human(player_name_2, scanner);
+                Nim game = new Nim(13, 3, player1, player2);
+                Orchestrator orchestrator = new Orchestrator(game);
+                orchestrator.play();
+                scanner.close();
+            }
 
-        System.out.println("Player 1's name is: " + player1.getName());
-        System.out.println("Player 2's name is: " + player2.getName());
+            if (game_choose == 2) {
+                Scanner scanner = new Scanner(System.in);
+                Player player1 = new Human(player_name_1, scanner);
+                Player player2 = new Human(player_name_2, scanner);
+                TicTacToe game = new TicTacToe(player1, player2);
+                Orchestrator orchestrator = new Orchestrator(game);
+                orchestrator.play();
+                scanner.close();
+            }
 
-        if (choice == 1) {
-            System.out.println();
-            System.out.println("Welcome to Nim game");
-            Nim nim = new Nim(20, 3, player1, player2);
-            Orchestrator play_nim = new Orchestrator(nim);
-            System.out.println("Initial matches " + nim.getInitialNbMatches());
-            play_nim.play(nim);
         }
 
-        if (choice == 2) {
-            System.out.println();
-            System.out.println("Welcome to TicTacToe");
-            TicTacToe ttt = new TicTacToe(player1, player2);
-            Orchestrator play_ttt = new Orchestrator(ttt);
-            ttt.display();
-            ttt.displayIndex();
-            play_ttt.play(ttt);
+        if (game_mode == 2) {
+            System.out.print("Enter your name: ");
+            Scanner name = new Scanner(System.in);
+            String player = name.nextLine();
+
+            if (game_choose == 1) {
+                Scanner scanner = new Scanner(System.in);
+                Random rand = new Random();
+                Player player1 = new Human(player, scanner);
+                Player player2 = new RandomPlayer(rand);
+                Nim game = new Nim(13, 3, player1, player2);
+                Orchestrator orchestrator = new Orchestrator(game);
+                orchestrator.play();
+                scanner.close();
+            }
+
+            if (game_choose == 2) {
+                Scanner scanner = new Scanner(System.in);
+                Random rand = new Random();
+                Player player1 = new Human(player, scanner);
+                Player player2 = new RandomPlayer(rand);
+                TicTacToe game = new TicTacToe(player1, player2);
+                Orchestrator orchestrator = new Orchestrator(game);
+                orchestrator.play();
+                scanner.close();
+            }
+        }
+
+        if (game_mode == 3) {
+            System.out.print("Enter your name: ");
+            Scanner name = new Scanner(System.in);
+            String player = name.nextLine();
+
+            if (game_choose == 1) {
+                Scanner scanner = new Scanner(System.in);
+                Player player1 = new Human(player, scanner);
+                Player player2 = new NegamaxPlayer();
+                Nim game = new Nim(13, 3, player1, player2);
+                Orchestrator orchestrator = new Orchestrator(game);
+                orchestrator.play();
+                scanner.close();
+            }
+
+            if (game_choose == 2) {
+                Scanner scanner = new Scanner(System.in);
+                Player player1 = new Human(player, scanner);
+                Player player2 = new NegamaxPlayer();
+                TicTacToe game = new TicTacToe(player1, player2);
+                Orchestrator orchestrator = new Orchestrator(game);
+                orchestrator.play();
+                scanner.close();
+            }
         }
     }
 }

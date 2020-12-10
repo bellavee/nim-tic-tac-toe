@@ -5,57 +5,53 @@ import java.util.ArrayList;
 import players.Player;
 
 public class Nim extends AbstractGame {
-    private int taille;
-    private int max_allu;
-    private int courant_allu;
+    private int size;
+    private int max_matches;
+    private int current_matches;
 
     public Nim(int taille, int max_allu, Player p1, Player p2) {
         super(p1, p2);
-        this.taille = taille;
-        this.max_allu = max_allu;
-        this.courant_allu = taille - courant_allu;
+        this.size = taille;
+        this.max_matches = max_allu;
+        this.current_matches = taille - current_matches;
     }
 
     public int getInitialNbMatches() {
-        return taille;
+        return size;
     }
 
     public int getCurrentNbMatches() {
-        return this.courant_allu;
+        return this.current_matches;
     }
 
     @Override
     public String situationToString() {
-        return "The rest: " + this.courant_allu;
+        return "This is " + getCurrentPlayer().toString() + "'s turn\n" + "The rest " + this.current_matches;
     }
 
-    public void changePlayer() {
-        if (this.current_player.equals(first_player)) {
-            this.current_player = second_player;
-        } else {
-            this.current_player = first_player;
-        }
+    @Override
+    public String moveToString(int index) {
+        return "Valid move " + validMoves();
     }
 
     @Override
     public void execute(int index) {
-        this.courant_allu -= index;
+        this.current_matches -= index;
         changePlayer();
     }
 
     @Override
     public boolean isValid(int index) {
-        if (index > 0 && index <= this.max_allu && index <= this.courant_allu) {
+        if (index > 0 && index <= this.max_matches && index <= this.current_matches) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     @Override
-    public ArrayList validMoves() {
-        ArrayList<Integer> move_valid = new ArrayList<Integer>();
-        for (int i = 1; i <= this.max_allu; i++) {
+    public ArrayList<Integer> validMoves() {
+        ArrayList<Integer> move_valid = new ArrayList<>();
+        for (int i = 1; i <= this.max_matches; i++) {
             if (isValid(i)) {
                 move_valid.add(i);
             }
@@ -65,7 +61,7 @@ public class Nim extends AbstractGame {
 
     @Override
     public Player getWinner() {
-        if (this.courant_allu == 0) {
+        if (this.current_matches == 0) {
             return this.current_player;
         }
         return null;
@@ -80,4 +76,16 @@ public class Nim extends AbstractGame {
         }
     }
 
+    public Game copy() {
+        Nim res = new Nim(this.size, this.max_matches, this.first_player, this.second_player);
+        res.current_matches = this.current_matches;
+        res.current_player = super.current_player;
+        return res;
+    }
+
+    @Override
+    protected void doExecute(int index) {
+        // TODO Auto-generated method stub
+
+    }
 }

@@ -1,10 +1,8 @@
 package games;
 
-import java.util.ArrayList;
-
 import players.Player;
 
-public abstract class AbstractGame {
+public abstract class AbstractGame implements Game {
     protected Player first_player;
     protected Player second_player;
     protected Player current_player;
@@ -19,19 +17,20 @@ public abstract class AbstractGame {
         return this.current_player;
     }
 
+    public Player changePlayer() {
+        if (this.current_player.equals(first_player)) {
+            this.current_player = second_player;
+        } else {
+            this.current_player = first_player;
+        }
+        return this.current_player;
+    }
+
     protected abstract void doExecute(int index);
 
     public void execute(int index) {
         doExecute(index);
+        changePlayer();
     }
 
-    public abstract ArrayList validMoves();
-
-    public abstract boolean isValid(int index);
-
-    public abstract boolean isOver();
-
-    public abstract Player getWinner();
-
-    public abstract String situationToString();
 }

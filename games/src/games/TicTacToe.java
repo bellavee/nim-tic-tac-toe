@@ -6,25 +6,16 @@ import players.Player;
 
 public class TicTacToe extends AbstractGame {
     private Player tab[][] = new Player[3][3];
-    private int tab_index[][] = new int[3][3];
 
     public TicTacToe(Player p1, Player p2) {
         super(p1, p2);
-        int coup = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                this.tab[i][j] = null;
-                this.tab_index[i][j] = coup;
-                coup += 1;
-            }
-        }
     }
 
     public void display() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (this.tab[i][j] == null)
-                    System.out.print("." + "\t");
+                    System.out.print(".\t");
 
                 if (this.tab[i][j] == first_player) {
                     System.out.print("x" + "\t");
@@ -39,38 +30,16 @@ public class TicTacToe extends AbstractGame {
         }
     }
 
-    public void displayIndex() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(this.tab_index[i][j] + "\t");
-            }
-            System.out.println();
-        }
-    }
-
-    public void changePlayer() {
-        if (this.current_player.equals(first_player)) {
-            this.current_player = second_player;
-        } else {
-            this.current_player = first_player;
-        }
-    }
-
     @Override
     public void execute(int index) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (index == this.tab_index[i][j]) {
-                    if (this.current_player.equals(first_player)) {
-                        this.tab[i][j] = first_player;
-                    } else {
-                        this.tab[i][j] = second_player;
-                    }
-                }
-            }
+        int row = index / 3;
+        int col = index % 3;
+        if (this.current_player.equals(first_player)) {
+            this.tab[row][col] = first_player;
+        } else {
+            this.tab[row][col] = second_player;
         }
 
-        display();
         if (getWinner() == null) {
             changePlayer();
         }
@@ -78,30 +47,17 @@ public class TicTacToe extends AbstractGame {
 
     @Override
     public boolean isValid(int index) {
-        if (index > 8 || index < 0) {
-            return false;
-        }
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (index == this.tab_index[i][j] && this.tab[i][j] == first_player) {
-                    return false;
-                }
-
-                else if (index == this.tab_index[i][j] && this.tab[i][j] == second_player) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        ArrayList<Integer> move = validMoves();
+        return move.contains(index);
     }
 
-    public ArrayList validMoves() {
-        ArrayList<Integer> move_valid = new ArrayList<Integer>();
+    @Override
+    public ArrayList<Integer> validMoves() {
+        ArrayList<Integer> move_valid = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (isValid(this.tab_index[i][j])) {
-                    move_valid.add(this.tab_index[i][j]);
+                if (this.tab[i][j] == null) {
+                    move_valid.add(i * 3 + j);
                 }
             }
         }
@@ -150,21 +106,9 @@ public class TicTacToe extends AbstractGame {
         return null;
     }
 
-    public boolean tie() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (this.tab[i][j] == null) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     @Override
     public boolean isOver() {
-        if (tie()) {
-            System.out.println("Tie");
+        if (validMoves().isEmpty()) {
             return true;
         }
 
@@ -178,8 +122,41 @@ public class TicTacToe extends AbstractGame {
     }
 
     @Override
+    public String moveToString(int index) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (this.tab[i][j] == null)
+                    System.out.print(".\t");
+
+                if (this.tab[i][j] == first_player) {
+                    System.out.print("x" + "\t");
+                }
+
+                if (this.tab[i][j] == second_player) {
+                    System.out.print("o" + "\t");
+                }
+
+            }
+            System.out.println();
+        }
+        return "Valid move " + validMoves();
+    }
+
+    @Override
     public String situationToString() {
-        return "------";
+        return "This is " + getCurrentPlayer().toString() + "'s turn";
+    }
+
+    public Game copy() {
+        TicTacToe res = new TicTacToe(this.first_player, this.second_player);
+        res.tab = new Player[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                res.tab[i][j] = this.tab[i][j];
+            }
+        }
+        res.current_player = super.current_player;
+        return res;
     }
 
     @Override
