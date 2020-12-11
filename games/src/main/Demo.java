@@ -1,3 +1,7 @@
+/* L2 Informatique - Groupe 70
+Nom et prénom: VU Nguyen Phuong Vy
+Numéro d'étudiant: 21911658 */
+
 package main;
 
 import java.util.Random;
@@ -14,7 +18,7 @@ import plays.Orchestrator;
 
 public class Demo {
 
-    // =============== to play ===============
+    /* =============== to play =============== */
 
     public static void nim(int size, int max, Player p1, Player p2) {
         Nim game = new Nim(size, max, p1, p2);
@@ -34,7 +38,7 @@ public class Demo {
         orchestrator.play();
     }
 
-    // =============== main ===============
+    /* =============== main =============== */
 
     public static void main(String[] args) {
         System.out.println("Choose a game you wanna play\n1-Nim\t2-TicTacToe\t3-TicTacToeWithHints");
@@ -44,7 +48,7 @@ public class Demo {
         System.out.println("Choose a mode\n1-PvP\t2-PvE-random\t3-PvE-ai\t4-EvE-random\t5-EvE-ai-random\t6-EvE-ai");
         int game_mode = choice.nextInt();
 
-        // =============== player vs player ===============
+        /* =============== player vs player =============== */
 
         if (game_mode == 1) {
             System.out.print("Enter Player 1's name: ");
@@ -77,7 +81,7 @@ public class Demo {
             name.close();
         }
 
-        // =============== player vs random ===============
+        /* =============== player vs random =============== */
 
         if (game_mode == 2) {
             System.out.print("Enter your name: ");
@@ -108,7 +112,7 @@ public class Demo {
             name.close();
         }
 
-        // =============== player vs ai ===============
+        /* =============== player vs ai =============== */
 
         if (game_mode == 3) {
             System.out.print("Enter your name: ");
@@ -137,7 +141,7 @@ public class Demo {
             name.close();
         }
 
-        // =============== random vs random ===============
+        /* =============== random vs random =============== */
 
         if (game_mode == 4) {
             Scanner scanner = new Scanner(System.in);
@@ -161,7 +165,7 @@ public class Demo {
             }
         }
 
-        // =============== random vs ai ===============
+        /* =============== random vs ai =============== */
 
         if (game_mode == 5) {
             Scanner scanner = new Scanner(System.in);
@@ -185,7 +189,7 @@ public class Demo {
             }
         }
 
-        // =============== ai vs ai ===============
+        /* =============== ai vs ai =============== */
 
         if (game_mode == 6) {
             Scanner scanner = new Scanner(System.in);

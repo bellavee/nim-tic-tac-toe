@@ -1,3 +1,7 @@
+/* L2 Informatique - Groupe 70
+Nom et prénom: VU Nguyen Phuong Vy
+Numéro d'étudiant: 21911658 */
+
 package games;
 
 import java.util.ArrayList;
@@ -32,18 +36,18 @@ public class TicTacToe extends AbstractGame {
 
     @Override
     public ArrayList<Integer> validMoves() {
-        ArrayList<Integer> move_valid = new ArrayList<>();
+        ArrayList<Integer> valid_move = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (this.tab[i][j] == null) {
-                    move_valid.add(i * 3 + j);
+                    valid_move.add(i * 3 + j);
                 }
             }
         }
-        return move_valid;
+        return valid_move;
     }
 
-    public boolean wins(Player P, int row, int col, int drow, int dcol) {
+    public boolean wins(Player p, int row, int col, int drow, int dcol) {
         if (this.tab[row][col] == null)
             return false;
 
@@ -140,7 +144,6 @@ public class TicTacToe extends AbstractGame {
     @Override
     protected void doExecute(int index) {
         // TODO Auto-generated method stub
-
     }
 
 }

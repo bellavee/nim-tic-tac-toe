@@ -1,3 +1,7 @@
+/* L2 Informatique - Groupe 70
+Nom et prénom: VU Nguyen Phuong Vy
+Numéro d'étudiant: 21911658 */
+
 package plays;
 
 import games.Game;

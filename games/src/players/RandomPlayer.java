@@ -1,3 +1,7 @@
+/* L2 Informatique - Groupe 70
+Nom et prénom: VU Nguyen Phuong Vy
+Numéro d'étudiant: 21911658 */
+
 package players;
 
 import java.util.Random;
@@ -13,8 +17,8 @@ public class RandomPlayer implements Player {
 
     @Override
     public int chooseMove(Game game) {
-        int choice = rand.nextInt(game.validMoves().size());
-        return game.validMoves().get(choice);
+        int move = rand.nextInt(game.validMoves().size());
+        return game.validMoves().get(move);
     }
 
     // getName()

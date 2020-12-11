@@ -1,3 +1,7 @@
+/* L2 Informatique - Groupe 70
+Nom et prénom: VU Nguyen Phuong Vy
+Numéro d'étudiant: 21911658 */
+
 package games;
 
 import java.util.ArrayList;
@@ -50,12 +54,12 @@ public class Nim extends AbstractGame {
 
     @Override
     public ArrayList<Integer> validMoves() {
-        ArrayList<Integer> move_valid = new ArrayList<>();
+        ArrayList<Integer> valid_move = new ArrayList<>();
         for (int i = 1; i <= this.max_matches; i++) {
             if (isValid(i))
-                move_valid.add(i);
+                valid_move.add(i);
         }
-        return move_valid;
+        return valid_move;
     }
 
     @Override
