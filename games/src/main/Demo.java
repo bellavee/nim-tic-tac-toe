@@ -207,5 +207,7 @@ public class Demo {
                 scanner.close();
             }
         }
+
+        choice.close();
     }
 }
