@@ -13,10 +13,6 @@ public class TicTacToeWithHints extends TicTacToe {
         super(p1, p2);
     }
 
-    public void unExecute(int index) {
-        this.tab[index / 3][index % 3] = null;
-    }
-
     public ArrayList<Integer> hints() {
         ArrayList<Integer> hints = new ArrayList<>();
         for (int move : validMoves()) {
