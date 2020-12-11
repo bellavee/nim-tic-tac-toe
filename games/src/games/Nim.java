@@ -9,11 +9,11 @@ public class Nim extends AbstractGame {
     private int max_matches;
     private int current_matches;
 
-    public Nim(int taille, int max_allu, Player p1, Player p2) {
+    public Nim(int size, int max_matches, Player p1, Player p2) {
         super(p1, p2);
-        this.size = taille;
-        this.max_matches = max_allu;
-        this.current_matches = taille - current_matches;
+        this.size = size;
+        this.max_matches = max_matches;
+        this.current_matches = size - current_matches;
     }
 
     public int getInitialNbMatches() {
@@ -26,12 +26,12 @@ public class Nim extends AbstractGame {
 
     @Override
     public String situationToString() {
-        return "This is " + getCurrentPlayer().toString() + "'s turn\n" + "The rest " + this.current_matches;
+        return "The rest " + getCurrentNbMatches() + "\nValid move " + validMoves();
     }
 
     @Override
     public String moveToString(int index) {
-        return "Valid move " + validMoves();
+        return "movetostring" + index;
     }
 
     @Override
@@ -42,9 +42,9 @@ public class Nim extends AbstractGame {
 
     @Override
     public boolean isValid(int index) {
-        if (index > 0 && index <= this.max_matches && index <= this.current_matches) {
+        if (index > 0 && index <= this.max_matches && index <= this.current_matches)
             return true;
-        }
+
         return false;
     }
 
@@ -52,28 +52,25 @@ public class Nim extends AbstractGame {
     public ArrayList<Integer> validMoves() {
         ArrayList<Integer> move_valid = new ArrayList<>();
         for (int i = 1; i <= this.max_matches; i++) {
-            if (isValid(i)) {
+            if (isValid(i))
                 move_valid.add(i);
-            }
         }
         return move_valid;
     }
 
     @Override
     public Player getWinner() {
-        if (this.current_matches == 0) {
+        if (this.current_matches == 0)
             return this.current_player;
-        }
         return null;
     }
 
     @Override
     public boolean isOver() {
-        if (getWinner() == null) {
+        if (getWinner() == null)
             return false;
-        } else {
+        else
             return true;
-        }
     }
 
     public Game copy() {

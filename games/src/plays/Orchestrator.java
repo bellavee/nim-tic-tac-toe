@@ -10,16 +10,18 @@ public class Orchestrator {
     }
 
     public void play() {
-        System.out.println("Move valid " + this.game.validMoves());
+        System.out.println(this.game.situationToString());
+
         while (!this.game.isOver()) {
-            System.out.println(this.game.situationToString());
+            System.out.println("This is " + this.game.getCurrentPlayer().toString() + "'s turn\n");
             int move = this.game.getCurrentPlayer().chooseMove(game);
             this.game.execute(move);
-            System.out.println(this.game.moveToString(move));
+            System.out.println(this.game.situationToString());
 
-            if (this.game.getWinner() != null) {
+            if (this.game.getWinner() != null)
                 System.out.println("Winner is " + this.game.getWinner().toString());
-            }
         }
+        if (this.game.getWinner() == null)
+            System.out.println("Draw!");
     }
 }

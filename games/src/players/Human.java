@@ -19,7 +19,6 @@ public class Human implements Player {
         int choice = this.move.nextInt();
 
         while (!game.isValid(choice)) {
-            System.out.println(game.moveToString(choice));
             this.move = new Scanner(System.in);
             choice = this.move.nextInt();
         }
@@ -28,9 +27,9 @@ public class Human implements Player {
         return choice;
     }
 
+    // getName()
     @Override
     public String toString() {
         return this.player;
     }
-
 }

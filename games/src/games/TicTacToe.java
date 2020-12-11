@@ -5,44 +5,23 @@ import java.util.ArrayList;
 import players.Player;
 
 public class TicTacToe extends AbstractGame {
-    private Player tab[][] = new Player[3][3];
+    protected Player tab[][] = new Player[3][3];
 
     public TicTacToe(Player p1, Player p2) {
         super(p1, p2);
-    }
-
-    public void display() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (this.tab[i][j] == null)
-                    System.out.print(".\t");
-
-                if (this.tab[i][j] == first_player) {
-                    System.out.print("x" + "\t");
-                }
-
-                if (this.tab[i][j] == second_player) {
-                    System.out.print("o" + "\t");
-                }
-
-            }
-            System.out.println();
-        }
     }
 
     @Override
     public void execute(int index) {
         int row = index / 3;
         int col = index % 3;
-        if (this.current_player.equals(first_player)) {
+        if (this.current_player.equals(first_player))
             this.tab[row][col] = first_player;
-        } else {
+        else
             this.tab[row][col] = second_player;
-        }
 
-        if (getWinner() == null) {
+        if (getWinner() == null)
             changePlayer();
-        }
     }
 
     @Override
@@ -65,15 +44,15 @@ public class TicTacToe extends AbstractGame {
     }
 
     public boolean wins(Player P, int row, int col, int drow, int dcol) {
-        if (this.tab[row][col] == null) {
+        if (this.tab[row][col] == null)
             return false;
-        }
-        if (this.tab[row][col] != this.tab[row + drow][col + dcol]) {
+
+        if (this.tab[row][col] != this.tab[row + drow][col + dcol])
             return false;
-        }
-        if (this.tab[row][col] != this.tab[row + 2 * drow][col + 2 * dcol]) {
+
+        if (this.tab[row][col] != this.tab[row + 2 * drow][col + 2 * dcol])
             return false;
-        }
+
         return true;
     }
 
@@ -108,43 +87,42 @@ public class TicTacToe extends AbstractGame {
 
     @Override
     public boolean isOver() {
-        if (validMoves().isEmpty()) {
+        if (validMoves().isEmpty())
             return true;
-        }
 
-        if (getWinner() == null) {
+        if (getWinner() == null)
             return false;
-        }
 
-        else {
+        else
             return true;
-        }
     }
 
     @Override
     public String moveToString(int index) {
+        return index + " = " + "(" + index / 3 + ", " + index % 3 + ")";
+    }
+
+    @Override
+    public String situationToString() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (this.tab[i][j] == null)
                     System.out.print(".\t");
 
-                if (this.tab[i][j] == first_player) {
-                    System.out.print("x" + "\t");
-                }
+                if (this.tab[i][j] == first_player)
+                    System.out.print("x\t");
 
-                if (this.tab[i][j] == second_player) {
-                    System.out.print("o" + "\t");
-                }
-
+                if (this.tab[i][j] == second_player)
+                    System.out.print("o\t");
             }
             System.out.println();
         }
-        return "Valid move " + validMoves();
-    }
 
-    @Override
-    public String situationToString() {
-        return "This is " + getCurrentPlayer().toString() + "'s turn";
+        System.out.println("Valid moves ");
+        for (int move : validMoves())
+            System.out.println(moveToString(move));
+
+        return "\n";
     }
 
     public Game copy() {

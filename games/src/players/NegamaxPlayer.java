@@ -24,9 +24,8 @@ public class NegamaxPlayer implements Player {
                 copy.execute(move);
                 int eval = -evaluate(copy);
 
-                if (res == -9999 || eval > res) {
+                if (res == -9999 || eval > res)
                     res = eval;
-                }
             }
             return res;
         }
@@ -48,8 +47,9 @@ public class NegamaxPlayer implements Player {
         return best_move;
     }
 
+    // getName()
     @Override
     public String toString() {
-        return "Negamax player";
+        return "Negamax player no." + this.hashCode();
     }
 }

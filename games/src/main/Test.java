@@ -41,16 +41,15 @@ public class Test {
         ok = ok && ticTacToeTester.testIsOver();
         ok = ok && ticTacToeTester.testCopy();
 
-        // TicTacToeWithHintsTests ticTacToeWithHintsTester = new
-        // TicTacToeWithHintsTests();
-        // ok = ok && ticTacToeWithHintsTester.testGetCurrentPlayer();
-        // ok = ok && ticTacToeWithHintsTester.testExecuteAndIsValid();
-        // ok = ok && ticTacToeWithHintsTester.testValidMoves();
-        // ok = ok && ticTacToeWithHintsTester.testWins();
-        // ok = ok && ticTacToeWithHintsTester.testGetWinner();
-        // ok = ok && ticTacToeWithHintsTester.testIsOver();
+        TicTacToeWithHintsTests ticTacToeWithHintsTester = new TicTacToeWithHintsTests();
+        ok = ok && ticTacToeWithHintsTester.testGetCurrentPlayer();
+        ok = ok && ticTacToeWithHintsTester.testExecuteAndIsValid();
+        ok = ok && ticTacToeWithHintsTester.testValidMoves();
+        ok = ok && ticTacToeWithHintsTester.testWins();
+        ok = ok && ticTacToeWithHintsTester.testGetWinner();
+        ok = ok && ticTacToeWithHintsTester.testIsOver();
         // ok = ok && ticTacToeWithHintsTester.testHints();
-        // ok = ok & ticTacToeWithHintsTester.testCopy();
+        ok = ok && ticTacToeWithHintsTester.testCopy();
 
         // Package "players"
         HumanTests humanTester = new HumanTests();

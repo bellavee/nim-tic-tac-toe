@@ -17,6 +17,7 @@ public class RandomPlayer implements Player {
         return game.validMoves().get(choice);
     }
 
+    // getName()
     @Override
     public String toString() {
         return "Random player no. " + this.hashCode();
