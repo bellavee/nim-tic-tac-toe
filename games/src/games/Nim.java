@@ -1,4 +1,4 @@
-/* L2 Informatique - Groupe 70
+/* L2 Informatique - Groupe 70 CC POO
 Nom et prénom: VU Nguyen Phuong Vy
 Numéro d'étudiant: 21911658 */
 
@@ -30,12 +30,13 @@ public class Nim extends AbstractGame {
 
     @Override
     public String situationToString() {
-        return "The rest " + getCurrentNbMatches() + "\nValid move " + validMoves();
+        return "The rest " + getCurrentNbMatches() + "\nValid moves " + validMoves();
     }
 
     @Override
     public String moveToString(int index) {
-        return "movetostring" + index;
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override

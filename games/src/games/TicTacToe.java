@@ -1,4 +1,4 @@
-/* L2 Informatique - Groupe 70
+/* L2 Informatique - Groupe 70 CC POO
 Nom et prénom: VU Nguyen Phuong Vy
 Numéro d'étudiant: 21911658 */
 

@@ -1,4 +1,4 @@
-/* L2 Informatique - Groupe 70
+/* L2 Informatique - Groupe 70 CC POO
 Nom et prénom: VU Nguyen Phuong Vy
 Numéro d'étudiant: 21911658 */
 
@@ -57,8 +57,8 @@ public class Test {
 
         // Package "players"
         HumanTests humanTester = new HumanTests();
-        // ok = ok && humanTester.testChooseMove();
-        // ok = ok && humanTester.silentTestChooseMove();
+        ok = ok && humanTester.testChooseMove();
+        ok = ok && humanTester.silentTestChooseMove();
 
         RandomPlayerTests randomTester = new RandomPlayerTests();
         ok = ok && randomTester.testChooseMove();

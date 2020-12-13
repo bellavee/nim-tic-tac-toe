@@ -1,4 +1,4 @@
-/* L2 Informatique - Groupe 70
+/* L2 Informatique - Groupe 70 CC POO
 Nom et prénom: VU Nguyen Phuong Vy
 Numéro d'étudiant: 21911658 */
 
@@ -35,22 +35,19 @@ public class TicTacToeWithHints extends TicTacToe {
                 if (this.tab[i][j] == null)
                     System.out.print(".\t");
 
-                if (this.tab[i][j] == first_player) {
+                if (this.tab[i][j] == first_player)
                     System.out.print("x\t");
-                }
 
-                if (this.tab[i][j] == second_player) {
+                if (this.tab[i][j] == second_player)
                     System.out.print("o\t");
-                }
-
             }
             System.out.println();
         }
 
         System.out.println("Valid moves ");
-        for (int move : validMoves()) {
+
+        for (int move : validMoves())
             System.out.println(moveToString(move));
-        }
 
         return "Hints " + hints();
     }

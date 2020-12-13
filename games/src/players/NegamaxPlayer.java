@@ -1,4 +1,4 @@
-/* L2 Informatique - Groupe 70
+/* L2 Informatique - Groupe 70 CC POO
 Nom et prénom: VU Nguyen Phuong Vy
 Numéro d'étudiant: 21911658 */
 
@@ -12,6 +12,7 @@ public class NegamaxPlayer implements Player {
         Player current_winner = game.getWinner();
         Player current_player = game.getCurrentPlayer();
         int res;
+
         if (current_winner != null && current_winner == current_player)
             return 1;
 
@@ -39,10 +40,12 @@ public class NegamaxPlayer implements Player {
     public int chooseMove(Game game) {
         int best_val = -9999;
         int best_move = 0;
+
         for (int move : game.validMoves()) {
             Game copy = game.copy();
             copy.execute(move);
             int eval = -evaluate(copy);
+
             if (best_val == -9999 || eval > best_val) {
                 best_val = eval;
                 best_move = move;
