@@ -25,6 +25,7 @@ public class Orchestrator {
             if (this.game.getWinner() != null)
                 System.out.println("Winner is " + this.game.getWinner().toString());
         }
+
         if (this.game.getWinner() == null)
             System.out.println("Draw!");
     }

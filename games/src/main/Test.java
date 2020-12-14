@@ -57,7 +57,7 @@ public class Test {
 
         // Package "players"
         HumanTests humanTester = new HumanTests();
-        ok = ok && humanTester.testChooseMove();
+        // ok = ok && humanTester.testChooseMove();
         ok = ok && humanTester.silentTestChooseMove();
 
         RandomPlayerTests randomTester = new RandomPlayerTests();

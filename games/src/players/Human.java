@@ -20,7 +20,6 @@ public class Human implements Player {
     @Override
     public int chooseMove(Game game) {
         int choice = this.move.nextInt();
-
         while (!game.isValid(choice))
             choice = this.move.nextInt();
 
