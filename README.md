@@ -1,5 +1,7 @@
-# fil-rouge-poo
+Sujet de fil rouge de Introduction de POO
 
-Sujet de fil rouge POO
+Jeu de Nim et TicTacToe
+Implementer l'algorimth NegaMax
+Jouer en terminal
 
 L2 Informatique - Université de Caen Normandie
